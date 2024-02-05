@@ -1,0 +1,59 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+        {% block title %}{% endblock title %} | Data Processing App</title>
+        <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+
+<!-- Top Container -->
+<div class="top-container">
+    
+    <script defer src="{% static '/js/script.js' %}"></script>
+    
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/register">Register</a></li>
+            <li><a href="#" onclick="openSignInPopup()">Sign In</a></li>
+        </ul>
+    </nav>
+    
+</div>
+
+
+
+
+<!-- Sign In Popup -->
+<div id="signInPopup" class="popup">
+    <form onsubmit="return validateSignInForm()">
+        <label for="signInUsername">Username:</label>
+        <input type="text" id="signInUsername" name="signInUsername" required>
+
+        <label for="signInPassword">Password:</label>
+        <input type="password" id="signInPassword" name="signInPassword" required>
+
+        <div class="popup-buttons">
+            <input type="submit" value="Submit">
+            <a href="#">Forgot Password</a>
+            <a href="#" onclick="closeSignInPopup()">Close</a>
+        </div>
+    </form>
+    <span class="close" onclick="closeSignInPopup()">&times;</span>
+</div>
+
+
+{% block body %}
+
+{% endblock body %}
+    
+
