@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import requires_csrf_token
-from home.models import UsersRegistry
+from home.models import UsersRegistry, File
 from django.contrib import messages
 
 @requires_csrf_token
@@ -34,3 +34,9 @@ def register(request):
     return render(request, 'register.html')
 
     #return HttpResponse("this is register page")
+    
+def upload(request):
+    if request.method == 'POST':
+        file = request.FILES['file']
+        File.objects.create(file = file)
+    return render(request, 'upload.html')

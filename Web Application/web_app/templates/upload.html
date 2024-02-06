@@ -1,0 +1,23 @@
+<!-- upload.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Upload{% endblock title %}
+    
+{% block body %}
+    <!-- Main Container -->
+<div class="main-container">
+    <!-- File Upload Form -->
+
+        <form id="uploadForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="file">Choose a file:</label>
+            <input type="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()">
+            <input type="Submit" value="Submit">
+        </form>
+        <div id="filePath"></div>
+    </div>
+
+{% endblock body %}
+    
+

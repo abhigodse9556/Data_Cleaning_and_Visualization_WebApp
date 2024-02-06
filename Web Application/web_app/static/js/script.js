@@ -4,9 +4,9 @@ function displayFilePath() {
     const filePath = document.getElementById('filePath');
 
     if (fileInput.files.length > 0) {
-        filePath.innerHTML = `File Path: ${fileInput.files[0].name}`;
+        filePath.innerHTML = `${fileInput.files[0].name} uploaded....`;
     } else {
-        filePath.innerHTML = '';
+        filePath.innerHTML = 'Uploading failed! Try again';
     }
 }
 
