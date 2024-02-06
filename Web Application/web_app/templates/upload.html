@@ -18,6 +18,16 @@
         <div id="filePath"></div>
     </div>
 
+
+    <div class="">
+
+    {% if cleaned_data %}
+        <div id="cleanedData">
+            <h2>Cleaned Data</h2>
+            {{ cleaned_data|safe }}
+        </div>
+    {% endif %}
+    </div>
 {% endblock body %}
     
 

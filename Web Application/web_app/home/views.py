@@ -1,7 +1,9 @@
+from django.http import HttpResponseServerError
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import requires_csrf_token
-from home.models import UsersRegistry, File
+from home.models import UsersRegistry
 from django.contrib import messages
+import pandas as pd
 
 @requires_csrf_token
 
@@ -35,8 +37,3 @@ def register(request):
 
     #return HttpResponse("this is register page")
     
-def upload(request):
-    if request.method == 'POST':
-        file = request.FILES['file']
-        File.objects.create(file = file)
-    return render(request, 'upload.html')
