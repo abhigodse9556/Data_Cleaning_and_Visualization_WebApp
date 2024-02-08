@@ -3,12 +3,12 @@
 {% extends 'base.html' %}
 
 {% block title %}Upload{% endblock title %}
+
+
     
 {% block body %}
-    <!-- Main Container -->
-<div class="main-container">
-    <!-- File Upload Form -->
-
+    <div class="main-container">
+        <!-- File Upload Form -->
         <form id="uploadForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="file">Choose a file:</label>
@@ -18,16 +18,14 @@
         <div id="filePath"></div>
     </div>
 
-
-    <div class="">
-
     {% if cleaned_data %}
         <div id="cleanedData">
             <h2>Cleaned Data</h2>
-            {{ cleaned_data|safe }}
+            <div class="result-container">
+                {{ cleaned_data|safe }}
+            </div>
         </div>
-    {% endif %}
-    </div>
+    {% endif %} 
 {% endblock body %}
     
 

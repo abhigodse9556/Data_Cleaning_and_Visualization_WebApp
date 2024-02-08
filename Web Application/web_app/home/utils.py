@@ -6,6 +6,7 @@ import warnings
 
 def upload(request):
     cleaned_data = None
+    download_link = None
     if request.method == 'POST':
         try:
             file = request.FILES['file']
@@ -31,7 +32,7 @@ def upload(request):
         except (pd.errors.ParserError, Exception) as e:
             cleaned_data = f"Error during data cleaning: {e}"
 
-    return render(request, 'upload.html', {'cleaned_data': cleaned_data})
+    return render(request, 'upload.html', {'cleaned_data': cleaned_data, 'download_link': download_link})
 
 def fill_null_values(df):
     print("\nData Types Before Filling Null Values:")
@@ -109,5 +110,5 @@ def find_and_fill_null_values(df):
         df.drop_duplicates(inplace=True)
         print("\nDropping duplicate rows. Updated dataset:")
         print(df)
-
     handle_outliers(df)
+

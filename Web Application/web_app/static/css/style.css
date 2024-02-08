@@ -216,3 +216,11 @@ input::placeholder {
 .alert-close{
     margin-left: 90%;
 }
+
+.result-container {
+    max-height: 400px; /* Set the desired height for the container */
+    overflow-y: auto; /* Add a vertical scrollbar if the content exceeds the container height */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    padding: 10px; /* Optional: Add padding for better aesthetics */
+}
+
