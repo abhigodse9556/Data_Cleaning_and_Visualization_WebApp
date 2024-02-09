@@ -224,3 +224,21 @@ input::placeholder {
     padding: 10px; /* Optional: Add padding for better aesthetics */
 }
 
+.download_modified_file {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download_modified_file a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.download_modified_file a:hover {
+    background-color: #2980b9;
+}

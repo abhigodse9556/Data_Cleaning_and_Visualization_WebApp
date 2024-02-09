@@ -25,6 +25,14 @@
                 {{ cleaned_data|safe }}
             </div>
         </div>
+        
+        {% if modified_file_path %}
+        <br><div class="download_modified_file">
+            <a href="{% url 'download_modified_file' %}?modified_file_path={{ modified_file_path }}" download>
+                Download Modified File
+            </a>
+        </div>
+        {% endif %}
     {% endif %} 
 {% endblock body %}
     
