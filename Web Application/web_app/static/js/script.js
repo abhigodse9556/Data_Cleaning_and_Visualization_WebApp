@@ -91,34 +91,3 @@ function autofillUsername() {
     usernameInput.value = username;
 }
 
-
-
-
-// async function uploadFile() {
-//     const fileInput = document.getElementById('file');
-//     const file = fileInput.files[0];
-
-//     if (file) {
-//         const formData = new FormData();
-//         formData.append('file', file);
-
-//         try {
-//             const response = await fetch('/upload', {
-//                 method: 'POST',
-//                 body: formData
-//             });
-
-//             if (response.ok) {
-//                 const result = await response.json();
-//                 console.log('Data from server:', result);
-//             } else {
-//                 console.error('Failed to upload file.');
-//             }
-//         } catch (error) {
-//             console.error('Error:', error);
-//         }
-//     } else {
-//         console.log('No file selected.');
-//     }
-// }
-
