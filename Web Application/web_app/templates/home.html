@@ -6,17 +6,134 @@
     
 {% block body %}
     <!-- Main Container -->
-<div class="main-container">
-    <!-- File Upload Form -->
-    <div class="container">
-        <form id="uploadForm" action="#">
-            <label for="file">Choose a file:</label>
-            <input type="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()">
-            <input type="submit" value="Upload">
-        </form>
+    <div class="site-content">
+        <header class="hero" data-bg-image="images/banner.jpg">
+            <div class="container">
+            
+                <div class="hero-content">
+                    <h1>Autometed data pre processing and visulizetion system  <br><strong>Simple and powerful</strong></h1>
+                </div>
+                
+                <form class="subscribe-form">
+                    <input type="text" placeholder="Enter your File...">
+                    <input type="submit" value="UPLOADE">
+                </form>
+                
+                <span class="scrolldown">Scroll down to explore <br><i class="fa fa-chevron-down"></i></span>
+            </div>
+        </header> <!-- hero -->
 
-        <div id="filePath"></div>
+        <main class="main-content">
+            <div class="fullwidth-block">
+                <div class="container">
+                    <h2 class="section-title">Responsive landing page</h2>
+                    <small class="section-subtitle">Voluptatem accusantum doloremque</small>
+
+                    <img src="images/devices.png" alt="" class="figure">
+                </div>
+            </div> <!-- .fullwidth-block -->
+
+            <div class="fullwidth-block">
+                <div class="container">
+                    <h2 class="section-title">A few features of our project</h2>
+                    
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="feature">
+                                <div class="feature-icon"><img src="images/icon-pie-chart.png" alt="" class="icon"></div>
+                                <h3 class="feature-title">Automated Preprocessing</h3>
+                                <p>Our tool automates the data preprocessing steps, including data cleaning, transformation, and feature engineering, reducing manual effort and saving time.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="feature">
+                                <div class="feature-icon"><img src="images/icon-mobile.png" alt="" class="icon"></div>
+                                <h3 class="feature-title">Compatibility</h3>
+                                <p>Compatible with various data formats and sources, including CSV, Excel, databases, and APIs, ensuring versatility in data preprocessing tasks.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="feature">
+                                <div class="feature-icon"><img src="images/icon-piggy-bank.png" alt="" class="icon"></div>
+                                <h3 class="feature-title">Time-saving</h3>
+                                <p>Our tool significantly reduces the time required for data preparation, allowing users to focus more on analysis and insights generation.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="feature">
+                                <div class="feature-icon"><img src="images/icon-lock.png" alt="" class="icon"></div>
+                                <h3 class="feature-title">Data Quality Assessment</h3>
+                                <p> The tool incorporates data quality assessment modules to identify and address data inconsistencies, missing values, outliers, and other anomalies.</p>
+                            </div>
+                        </div>
+                    </div> <!-- .row -->
+                </div> <!-- .container -->
+            </div> <!-- .fullwidth-block -->
+
+            <div class="fullwidth-block" data-bg-color="#e6e6e6">
+                <div class="container">
+                    <h2 class="section-title">Customer testimonials</h2>
+                    <smal class="section-subtitle">Neque porro quisquam dolorem</smal>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="testimonial">
+                                <img src="images/person-1.jpg" alt="" class="user-avatar">
+                                <div class="testimonial-content">
+                                    <span class="meta"><strong>Jessica Brown</strong>, <em>Project manager at <a href="#">Muffin INC.</a></em></span>
+                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                </div>
+                            </div>
+                            <div class="testimonial">
+                                <img src="images/person-3.jpg" alt="" class="user-avatar">
+                                <div class="testimonial-content">
+                                    <span class="meta"><strong>Michael Smith</strong>, <em>Designer at <a href="#">visio.com</a></em></span>
+                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="testimonial">
+                                <img src="images/person-2.jpg" alt="" class="user-avatar">
+                                <div class="testimonial-content">
+                                    <span class="meta"><strong>Joh Branson</strong>, <em>Founder and CEO at <a href="#">Designo INC.</a></em></span>
+                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                </div>
+                            </div>
+                            <div class="testimonial">
+                                <img src="images/person-4.jpg" alt="" class="user-avatar">
+                                <div class="testimonial-content">
+                                    <span class="meta"><strong>Sarah Thompson</strong>, <em>Project manager at<a href="#">Muffin INC.</a></em></span>
+                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .row -->
+                </div> <!-- .container -->
+            </div> <!-- .fullwidth-block -->
+
+            
+
+            
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>Copyright 2014 by Company name, Designed by Themezy. All rights reserved</p>
+
+                <div class="social-links">
+                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                    <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
+                </div>
+            </div>
+        </footer>
     </div>
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/app.js"></script>
 
 {% endblock body %}
     
