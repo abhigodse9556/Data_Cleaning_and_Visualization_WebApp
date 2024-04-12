@@ -1,4 +1,4 @@
-
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,58 +7,96 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
         {% block title %}{% endblock title %} | Data Processing App</title>
-        <link rel="stylesheet" href="{% static '/css/style.css' %}">
-        <link rel="stylesheet" href="{% static '/css/home.css' %}">
-        <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="{% static '/css/base.css' %}">
+
+        <style>
+
+          .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+          .heading{
+            color: #e83535;
+          }
+        
+          .navbar{
+            color: #e83535;
+          }
+        
+          .sign{
+            color: #e83535;
+            display: grid;
+            a{
+              text-decoration: none;
+              color: white;
+              font-weight: bold;
+              font-size: medium;
+              padding: 5px;
+            }
+          }
+
+          .signed_user{
+            color: #e83535;
+            display: none;
+            a{
+              text-decoration: none;
+              color: white;
+              font-weight: bold;
+              font-size: medium;
+              padding: 5px;
+            }
+          }
+        </style>
+
+        {% block additional_css %}{% endblock additional_css %}
 </head>
 <body>
 
 <!-- Top Container -->
-<div class="top-container">
     
-    <script defer src="{% static '/js/script.js' %}"></script>
+    {% comment %} <script defer src="{% static '/js/script.js' %}"></script> {% endcomment %}
     
-
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About us</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/upload">Upload</a></li>
-            <li><a href="#" onclick="openSignInPopup()">Sign In</a></li>
-        </ul>
-    </nav>
-    
-</div>
-
-
-
-
-<!-- Sign In Popup -->
-<div id="signInPopup" class="popup">
-    <form onsubmit="return validateSignInForm()">
-        <label for="signInUsername">Username:</label>
-        <input type="text" id="signInUsername" name="signInUsername" required>
-
-        <label for="signInPassword">Password:</label>
-        <input type="password" id="signInPassword" name="signInPassword" required>
-
-        <div class="popup-buttons">
-            <input type="submit" value="Submit">
-            <a href="#">Forgot Password</a>
-            <a href="#" onclick="closeSignInPopup()">Close</a>
+    <header>
+        <div class="container">
+          <div class="heading">
+            <h1>DataPrep</h1>
+          </div>
+          <div class="navbar">
+          <nav>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/userdashboard">Contact</a></li>
+            </ul>
+          </nav>
         </div>
-    </form>
-    <span class="close" onclick="closeSignInPopup()">&times;</span>
-</div>
-<div class="reg-form-div">
+        <div id="sign" class="sign">
+          <a href="/register">Sign Up for Free</a>
+          <a href="/login">Login</a>
+        </div>
+        <div id="signed_user" class="signed_user">
+          <h2 id="loggedUser" class="loggedUser">
+            {% if username %}
+                {{ username }}
+            {% else %}
+                Username
+            {% endif %}
+        </h2>
+          <a href="/">Log Out</a>
+        </div>
+        </div>
+      </header>
 
 {% block body %}
 
 {% endblock body %}
     
 
-</div>
+</div> 

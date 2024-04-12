@@ -1,0 +1,40 @@
+<!-- null.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Upload{% endblock title %}
+
+
+    
+{% block body %}
+    <div class="main-container">
+        <h1>Remove NULL Values</h1>
+        <!-- File Upload Form -->
+        <form id="uploadForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="file">Choose a file:</label>
+            <input type="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()">
+            <input type="Submit" value="Submit">
+        </form>
+        <div id="filePath"></div>
+    </div>
+
+    {% if cleaned_data %}
+        <div id="cleanedData">
+            <h2>Cleaned Data</h2>
+            <div class="result-container">
+                {{ cleaned_data|safe }}
+            </div>
+        </div>
+        
+        {% if modified_file_path %}
+        <br><div class="download_modified_file">
+            <a href="{% url 'download_modified_file' %}?modified_file_path={{ modified_file_path }}" download>
+                Download Modified File
+            </a>
+        </div>
+        {% endif %}
+    {% endif %} 
+{% endblock body %}
+    
+

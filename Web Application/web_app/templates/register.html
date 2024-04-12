@@ -4,6 +4,121 @@
 
 {% block title %}Register{% endblock title %}
     
+
+{%block additional_css%}
+
+<style>
+    .reg-form {
+        width: 400px; /* Adjust for desired width */
+        margin-top: 100px auto;
+        margin: 30px auto; /* Center the form and add spacing */
+        padding: 30px;
+        border-radius: 15px; /* Soften edges */
+        background-color: #fff; /* Clean white background */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px; /* Generous spacing between labels and inputs */
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px; /* Increased spacing for readability */
+        font-size: 16px; /* Slightly larger font size */
+    }
+    
+    
+    label {
+        font-weight: 500; /* Slightly bolder labels */
+    }
+    
+    .submitbuttons {
+        text-align: center;
+    }
+    
+    input[type="submit"] {
+        background-color: #007bff; /* Primary blue color */
+        color: white;
+        padding: 14px 24px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600; /* Bolder button text */
+        transition: all 0.2s ease-in-out; /* Smooth hover effect */
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #0062cc; /* Darker blue on hover */
+    }
+    
+    .submitbuttons a {
+        color: #6c757d; /* Gray link text */
+        text-decoration: none;
+        margin-left: 15px; /* Space between buttons */
+    }
+    
+    input:focus {
+        outline: none; /* Remove default outline */
+        border-color: #007bff; /* Blue border on focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Focus glow */
+    }
+    
+    input:invalid {
+        border-color: #dc3545; /* Red border for invalid fields */
+    }
+    
+    input::placeholder {
+        color: #999; /* Light gray placeholder text */
+    }
+    
+    @media (max-width: 576px) {
+        .reg-form {
+          width: 100%; /* Full width on smaller screens */
+        }
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #eee;
+    }
+    
+    .alert-dismissible {
+        padding-right: 30px;
+    }
+    
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: #000;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1;
+        text-shadow: 0 1px 0 #fff;
+        opacity: 0.2;
+    }
+    
+    .close:hover {
+        color: #000;
+        text-decoration: none;
+        opacity: 0.5;
+        cursor: pointer;
+    }
+    .alert-close{
+        margin-left: 90%;
+    }
+</style>
+
+{%endblock%}
+
 {% block body %}
 <!-- Main Container -->
 
@@ -50,6 +165,29 @@
     
     </form>
 </div>
+
+<script>
+    function autofillUsername() {
+        // Get the value of the email field
+        var emailInput = document.getElementById('email');
+        var emailValue = emailInput.value;
+    
+        // Extract the part before the '@' symbol
+        var username = emailValue.split('@')[0];
+    
+        // Autofill the registerUsername field
+        var usernameInput = document.getElementById('registerUsername');
+        usernameInput.value = username;
+    }
+
+    function closeSignInPopup() {
+        const signInPopup = document.getElementById('signInPopup');
+        signInPopup.style.display = 'none';
+        const alert = document.getElementById('alert');
+        alert.style.display = 'none';
+    }
+</script>
+
 {% endblock body %}
     
 

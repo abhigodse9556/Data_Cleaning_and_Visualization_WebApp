@@ -19,8 +19,40 @@ def contact(request):
     return render(request, 'contact.html')
     #return HttpResponse("this is contact page")
 
+def upload(request):
+    return render(request, 'upload.html')
+    #return HttpResponse("this is contact page")
+
+def userdashboard(request):
+    
+    return render(request, 'userdashboard.html')
+    #return HttpResponse("this is contact page")
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import UsersRegistry
+
 def login(request):
-    return HttpResponse("this is login page")
+    if request.method == 'POST':
+        registered_username = request.POST.get('registeredUsername')
+        password = request.POST.get('registeredPassword')
+        
+        try:
+            user = UsersRegistry.objects.get(registerUsername=registered_username)
+        except UsersRegistry.DoesNotExist:
+            user = None
+        
+        if user is not None and user.registerPassword == password:
+            # If the username and password match, set session variables
+            request.session['user_id'] = user.id
+            request.session['username'] = user.registerUsername
+            username = request.session.get('username')
+            return render(request, 'userdashboard.html', {'username': username})  # Redirect to home page after successful login
+        else:
+            messages.error(request, 'Invalid username or password')
+    
+    return render(request, 'login.html')
+
 
 def register(request):
     if request.method == 'POST':

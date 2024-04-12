@@ -1,39 +1,53 @@
 <!-- upload.html -->
 
 {% extends 'base.html' %}
-
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+{% endblock additional_css %}
 {% block title %}Upload{% endblock title %}
 
 
     
 {% block body %}
-    <div class="main-container">
-        <!-- File Upload Form -->
-        <form id="uploadForm" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <label for="file">Choose a file:</label>
-            <input type="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()">
-            <input type="Submit" value="Submit">
-        </form>
-        <div id="filePath"></div>
-    </div>
 
-    {% if cleaned_data %}
-        <div id="cleanedData">
-            <h2>Cleaned Data</h2>
-            <div class="result-container">
-                {{ cleaned_data|safe }}
-            </div>
-        </div>
-        
-        {% if modified_file_path %}
-        <br><div class="download_modified_file">
-            <a href="{% url 'download_modified_file' %}?modified_file_path={{ modified_file_path }}" download>
-                Download Modified File
-            </a>
-        </div>
-        {% endif %}
-    {% endif %} 
+<div class="upload_container">
+    <div class="upload_header">
+      <h1>Data Preprocessing WebApp</h1>
+      <p>Streamline Your Data Cleaning Process</p>
+    </div>
+    <section class="features">
+      <a href="/null" class="feature"><div>
+        <h2>Remove Null Values</h2>
+        <p>Effortlessly eliminate null or missing values from your dataset.</p>
+      </div></a>
+      <a href="/outlier" class="feature"><div>
+        <h2>Remove Outliers</h2>
+        <p>Identify and remove outliers to ensure the integrity of your data.</p>
+      </div></a>
+      <a href="/duplicate" class="feature"><div>
+        <h2>Remove Duplicates</h2>
+        <p>Easily detect and remove duplicate entries from your dataset.</p>
+      </div></a>
+      <a href="/automatic" class="feature"><div>
+        <h2>One-Click Cleaning</h2>
+        <p>Perform all cleaning activities in one go for maximum efficiency.</p>
+      </div></a>
+    </section>
+    <section class="visualization">
+      <h2>Data Visualization</h2>
+      <p>Visualize your cleaned data for better insights and decision-making.</p>
+    </section>
+    <footer>
+      <p>&copy; 2024 DataPrep WebApp. All rights reserved.</p>
+    </footer>
+  </div>
+
+
+
+
+{% comment %} <a href="/automatic">click hear to clean and preprocess the data automatically </a><br>
+<a href="/automatic">click hear to clean and preprocess the data manually </a> {% endcomment %}
 {% endblock body %}
     
 

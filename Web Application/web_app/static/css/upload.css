@@ -1,0 +1,130 @@
+
+  
+  .upload_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .upload_header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeInDown 1s ease-in-out;
+  }
+  
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .upload_header h1 {
+    font-size: 3em;
+    color: #333;
+  }
+  
+  .upload_header p {
+    font-size: 1.2em;
+    color: #777;
+    margin-top: 10px;
+  }
+  
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .feature {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    text-decoration: none;
+  }
+  
+  .feature:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature h2 {
+    font-size: 1.8em;
+    color: #333;
+  }
+  
+  .feature p {
+    font-size: 1.1em;
+    color: #666;
+  }
+  
+  .visualization {
+    text-align: center;
+    margin-top: 50px;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  /* Wheel Animations */
+  .wheel {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #3498db;
+    z-index: 999;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+  
+  .wheel.top-right {
+    top: 0;
+    right: 0;
+    animation-name: moveTopRight;
+  }
+  
+  .wheel.bottom-left {
+    bottom: 0;
+    left: 0;
+    animation-name: moveBottomLeft;
+  }
+  
+  @keyframes moveTopRight {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(calc(50vw - 25px), calc(50vh - 25px));
+    }
+    100% {
+      transform: translate(calc(50vw - 25px), calc(50vh - 25px));
+    }
+  }
+  
+  @keyframes moveBottomLeft {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(calc(-50vw + 25px), calc(-50vh + 25px));
+    }
+    100% {
+      transform: translate(calc(-50vw + 25px), calc(-50vh + 25px));
+    }
+  }
+  

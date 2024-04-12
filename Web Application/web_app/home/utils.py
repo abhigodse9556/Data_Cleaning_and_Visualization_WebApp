@@ -2,6 +2,7 @@ from django.http import FileResponse, HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render
 from home.models import File
 import pandas as pd
+import numpy as np
 import warnings
 import os
 
@@ -23,7 +24,10 @@ def upload(request):
                 return HttpResponseServerError("Unsupported file format. Only CSV and JSON formats are supported.")
 
             find_and_fill_null_values(df)
-            handle_outliers(df)
+             # Remove duplicate rows and columns
+            df = remove_duplicates(df, axis=0)  # Remove duplicate rows
+            df = remove_duplicates(df, axis=1)  # Remove duplicate columns
+
             
             # Use the "downloads" directory as the default path
             downloads_directory = os.path.join(os.path.expanduser("~"), "Downloads")
@@ -58,9 +62,9 @@ def download_modified_file(request):
             return HttpResponseServerError("Error: Modified file not found.")
     else:
         return HttpResponseServerError("Error: Modified file path not provided.")
+    
 
 def fill_null_values(df):
-    
     
     for column in df.columns:
         if pd.api.types.is_object_dtype(df[column]):
@@ -79,22 +83,140 @@ def fill_null_values(df):
             mode_value = df[column].mode().iloc[0]
             df[column].fillna(mode_value, inplace=True)
 
-    
+def handle_outliers(df, method='drop'):
+    max_rows_to_drop = int(df.shape[0] * 0.1)
 
-def handle_outliers(df):
-    # Z-score method to detect outliers
     with warnings.catch_warnings():
         warnings.filterwarnings("ignore", category=FutureWarning)
         z_scores = (df - df.mean(numeric_only=True)) / df.std(numeric_only=True)
     outlier_rows = df[(z_scores.abs() > 3).any(axis=1)]
 
     if not outlier_rows.empty:
+        if method == 'trim':
+            trimmed_df = df[(z_scores.abs() <= 3).all(axis=1)]
+            if not trimmed_df.empty:
+                return trimmed_df
 
-        # Drop outlier rows
-        df.drop(outlier_rows.index, inplace=True)
+        if method == 'cap':
+            cap_value = df.mean() + 3 * df.std()
+            capped_df = df.clip(lower=df.min(), upper=cap_value, axis=1)
+            if not capped_df.empty:
+                return capped_df
+
+        if method == 'impute':
+            imputed_df = df.mask(z_scores.abs() > 3, df.mean(), axis=1)
+            if not imputed_df.empty:
+                return imputed_df
+
+        if method == 'drop':
+            max_rows_to_drop = min(max_rows_to_drop, len(outlier_rows))
+            if max_rows_to_drop > 0:
+                df.drop(outlier_rows.head(max_rows_to_drop).index, inplace=True)
+                return df
+
+        if method == 'custom':
+            # Implement custom outlier handling method here
+            custom_handled_df = custom_handle_outliers(df, z_scores)
+            if not custom_handled_df.empty:
+                return custom_handled_df
+
+    return df
+
+def remove_duplicates(df, axis=0):
+    """
+    Remove duplicate rows or columns from a DataFrame.
+
+    Parameters:
+    df (DataFrame): The DataFrame to remove duplicates from.
+    axis (int, default=0): Axis along which to remove duplicates. 
+        0 for rows, 1 for columns.
+
+    Returns:
+    DataFrame: DataFrame with duplicates removed.
+    """
+    if axis == 0:
+        # Remove duplicate rows
+        df_no_duplicates = df.drop_duplicates()
+    elif axis == 1:
+        # Remove duplicate columns
+        df_no_duplicates = df.T.drop_duplicates().T
+    else:
+        raise ValueError("Axis value should be 0 for rows or 1 for columns.")
+    
+    return df_no_duplicates
+
+
+def custom_handle_outliers(df, z_scores):
+    # Example of a custom outlier handling method
+    # Identify and handle outliers not addressed by existing methods
+    # Here, we can identify outliers based on a specific condition and handle them accordingly
+    # For example, replacing outliers with the median value
+    
+    # Find rows where all z-scores are greater than 3 (extreme outliers)
+    extreme_outliers = df[(z_scores.abs() > 3).all(axis=1)]
+    
+    # Handle extreme outliers by replacing them with median values
+    if not extreme_outliers.empty:
+        median_values = df.median()
+        for col in df.columns:
+            df.loc[extreme_outliers.index, col] = median_values[col]
+    
+    return df
+
+date_formats_list = [
+    '%Y-%m-%d', '%Y/%m/%d', '%Y%m%d', '%m/%d/%Y', '%m/%d/%y', '%d/%m/%Y','%d-%m-%Y',
+    '%d/%m/%y', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%m/%d/%Y %H:%M:%S',
+    '%m/%d/%Y %H:%M'
+]
+
+def convert_data_types(df, date_formats=date_formats_list):
+    df_converted = df.copy()
+
+    data_type_mapping = {}
+
+    for column in df_converted.columns:
+        if pd.api.types.is_numeric_dtype(df_converted[column]):
+            if pd.api.types.is_integer_dtype(df_converted[column]):
+                data_type_mapping[column] = 'int'
+            elif pd.api.types.is_float_dtype(df_converted[column]):
+                data_type_mapping[column] = 'float'
+        elif pd.api.types.is_datetime64_any_dtype(df_converted[column]):
+            data_type_mapping[column] = 'datetime'
+        elif pd.api.types.is_bool_dtype(df_converted[column]):
+            data_type_mapping[column] = 'bool'
+        else:
+            data_type_mapping[column] = 'object'
+
+    for column, data_type in data_type_mapping.items():
+        if data_type == 'datetime' and column in df.columns:
+            if date_formats is not None:
+                for date_format in date_formats:
+                    try:
+                        df_converted[column] = pd.to_datetime(df_converted[column], errors='coerce', format=date_format)
+                        break  
+                    except ValueError:
+                        continue  
+            else:
+                df_converted[column] = pd.to_datetime(df_converted[column], errors='coerce')
+
+    for column, data_type in data_type_mapping.items():
+        if data_type == 'int':
+            df_converted[column] = pd.to_numeric(df_converted[column], errors='coerce').astype('Int64')
+        elif data_type == 'float':
+            df_converted[column] = pd.to_numeric(df_converted[column], errors='coerce')
+        elif data_type == 'bool':
+            df_converted[column] = df_converted[column].astype(bool)
+        elif data_type == 'object':
+            df_converted[column] = df_converted[column].astype(str)
+
+    return df_converted
+
+
 
 def find_and_fill_null_values(df):
     # Check for null values in the dataset
+    null_values=['NaN','NA','NULL','N/A','Na','null','na','nul','Null','NALL',' ']
+    df.replace(null_values, np.nan, inplace=True)
     null_values = df.isnull().sum()
 
     # Print rows with null values and the corresponding values
@@ -102,11 +224,23 @@ def find_and_fill_null_values(df):
     if not null_rows.empty:
         df.dropna(how='all', inplace=True)
 
+    # Drop rows with all-null values
+    df.dropna(how='all', inplace=True)
+
+    # Drop columns with all-null values
+    df.dropna(axis='columns', how='all', inplace=True)
+
+    # Fill null values
+    fill_null_values(df)
+
     # Identify and drop duplicate rows
     duplicate_rows = df[df.duplicated()]
     if not duplicate_rows.empty:
 
-        # Drop duplicate rows
-        df.drop_duplicates(inplace=True)
-    handle_outliers(df)
+    # Drop duplicate rows
+     df.drop_duplicates(inplace=True)
 
+     # Call the convert_data_types function
+     converted_df = convert_data_types(df)
+
+    handle_outliers(df)
