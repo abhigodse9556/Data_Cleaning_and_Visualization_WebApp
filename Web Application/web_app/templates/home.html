@@ -17,32 +17,7 @@
       </div>
     </section>
 
-    <section class="home_features">
-      <div class="home_container">
-        <h2>Key Features</h2>
-        <div class="home_feature">
-          <div class="icon">
-            <img src="data-import.png" alt="Data Import">
-          </div>
-          <h3>Data Import</h3>
-          <p>Effortlessly import your datasets with a few clicks</p>
-        </div>
-        <div class="home_feature">
-          <div class="icon">
-            <img src="data-cleaning.png" alt="Data Cleaning">
-          </div>
-          <h3>Data Cleaning</h3>
-          <p>Automatically clean and standardize your data</p>
-        </div>
-        <div class="home_feature">
-          <div class="icon">
-            <img src="data-visualization.png" alt="Data Visualization">
-          </div>
-          <h3>Data Visualization</h3>
-          <p>Create insightful visualizations to understand your data better</p>
-        </div>
-      </div>
-    </section>
+    
   </main>
 
   <footer>
@@ -55,6 +30,17 @@
     window.addEventListener('load', function() {
       document.querySelector('.home_features').classList.add('.fadeIn');
     });
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+  
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+      });
+
   </script>
 
 {% endblock body %}

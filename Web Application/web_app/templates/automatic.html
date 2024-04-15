@@ -2,11 +2,19 @@
 
 {% extends 'base.html' %}
 
+{% load static %}
+{%block additional_css%}
+
+<link rel="stylesheet" href="{% static '/css/common.css' %}">
+
+{%endblock%}
+
 {% block title %}Upload{% endblock title %}
 
 
     
 {% block body %}
+<div class="main_section">
     <div class="main-container">
         <!-- File Upload Form -->
         <form id="uploadForm" method="post" enctype="multipart/form-data">
@@ -34,6 +42,7 @@
         </div>
         {% endif %}
     {% endif %} 
+    </div>
 {% endblock body %}
     
 

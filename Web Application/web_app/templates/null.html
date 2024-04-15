@@ -1,19 +1,26 @@
 <!-- null.html -->
 
 {% extends 'base.html' %}
+{% load static %}
+{%block additional_css%}
+
+<link rel="stylesheet" href="{% static '/css/common.css' %}">
+
+{%endblock%}
 
 {% block title %}Upload{% endblock title %}
 
 
     
 {% block body %}
+<div class="main_section">
     <div class="main-container">
         <h1>Remove NULL Values</h1>
         <!-- File Upload Form -->
         <form id="uploadForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="file">Choose a file:</label>
-            <input type="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()">
+            <input type="file" class="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()">
             <input type="Submit" value="Submit">
         </form>
         <div id="filePath"></div>
@@ -35,6 +42,7 @@
         </div>
         {% endif %}
     {% endif %} 
+    </div>
 {% endblock body %}
     
 

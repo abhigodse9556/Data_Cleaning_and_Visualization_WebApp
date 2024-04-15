@@ -16,3 +16,10 @@ class File(models.Model):
     
     def __str__(self):
         return f"file_id: {self.id}"
+    
+
+class feedback(models.Model):
+    name = models.CharField(max_length=45)
+    email = models.CharField(max_length=45)
+    mobile = models.CharField(max_length=45)
+    message = models.CharField(max_length=250)

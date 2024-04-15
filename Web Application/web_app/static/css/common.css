@@ -1,0 +1,42 @@
+.main_section{
+    height: 750px;
+}
+
+.main-container {
+    text-align: center;
+}
+
+.result-container {
+    max-height: 400px; /* Set the desired height for the container */
+    overflow-y: auto; /* Add a vertical scrollbar if the content exceeds the container height */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    padding: 10px; /* Optional: Add padding for better aesthetics */
+    text-align: center;
+}
+
+.download_modified_file {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download_modified_file a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.download_modified_file a:hover {
+    background-color: #2980b9;
+}
+
+.dataframe{
+    margin: auto;
+}
+
+.file{
+    width: 500px;
+}

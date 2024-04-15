@@ -1,10 +1,12 @@
 from django.http import HttpResponseServerError
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import requires_csrf_token
-from home.models import UsersRegistry
-from django.contrib import messages
+from home.models import UsersRegistry, feedback
 import pandas as pd
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import UsersRegistry
 @requires_csrf_token
 
 def home(request):
@@ -16,6 +18,14 @@ def about(request):
     #return HttpResponse("this is about page")
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('sender_name')
+        email = request.POST.get('sender_email')
+        mobile = request.POST.get('sender_mobile')
+        msg = request.POST.get('message')
+        Users_table = feedback(name=name, email=email, mobile=mobile, message=msg)
+        Users_table.save()
+        messages.success(request, 'Message sent successfully!')
     return render(request, 'contact.html')
     #return HttpResponse("this is contact page")
 
@@ -23,14 +33,15 @@ def upload(request):
     return render(request, 'upload.html')
     #return HttpResponse("this is contact page")
 
-def userdashboard(request):
-    
-    return render(request, 'userdashboard.html')
+def feature(request):
+    return render(request, 'feature.html')
     #return HttpResponse("this is contact page")
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import UsersRegistry
+def automatic(request):
+    
+    return render(request, 'automatic.html')
+    #return HttpResponse("this is contact page")
+
 
 def login(request):
     if request.method == 'POST':

@@ -14,10 +14,11 @@ main {
   /* Home Hero Section */
   
   .home_hero {
-    background-image: linear-gradient(to right bottom, #4d90fe, #357ae8);
+    background-image: linear-gradient(to right bottom, #f3f5f8, #357ae8);
     color: #fff;
     padding: 100px 0;
     text-align: center;
+    height: 500px;
   }
   
   .home_hero h2 {
@@ -44,53 +45,11 @@ main {
   }
   
   .home_btn:hover {
-    background-color: #2962d7;
+    background: linear-gradient(to right bottom, #fffefe, #02edfe);
     transform: translateY(-3px);
   }
   
-  /* Home Features Section */
-  
-  .home_features {
-    padding: 80px 0;
-  }
-  
-  .home_features h2 {
-    font-size: 2.5em;
-    text-align: center;
-    margin-bottom: 50px;
-    color: #333;
-  }
-  
-  .home_feature {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-bottom: 50px;
-  }
-  
-  .icon {
-    width: 80px;
-    height: 80px;
-    margin-right: 20px;
-  }
-  
-  .icon img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .home_feature h3 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .home_feature p {
-    font-size: 1.1em;
-    color: #555;
-    line-height: 1.6;
-  }
-  
+ 
   
   footer {
     background-color: #333;

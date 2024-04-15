@@ -45,3 +45,10 @@ body {
   .sign{
     color: #e83535;
   }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
