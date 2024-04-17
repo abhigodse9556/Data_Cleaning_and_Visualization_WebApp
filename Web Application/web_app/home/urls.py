@@ -9,7 +9,6 @@ urlpatterns = [
     path("login", views.login, name="login"),
     path("register", views.register, name="register"),
     path("upload", views.upload, name="upload"),
-    path("automatic", views.automatic, name="automatic"),
     path("feature", views.feature, name="feature"),
     path("automatic", utils.upload, name="automatic"),
     path('download/', utils.download_modified_file, name='download_modified_file'),

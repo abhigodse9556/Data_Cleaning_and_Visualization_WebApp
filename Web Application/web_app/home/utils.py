@@ -47,7 +47,7 @@ def upload(request):
         except (pd.errors.ParserError, Exception) as e:
             cleaned_data = f"Error during data cleaning: {e}"
 
-    return render(request, 'upload.html', {'cleaned_data': cleaned_data, 'modified_file_path': modified_file_path})
+    return render(request, 'automatic.html', {'cleaned_data': cleaned_data, 'modified_file_path': modified_file_path})
 
 def download_modified_file(request):
     modified_file_path = request.GET.get('modified_file_path', None)

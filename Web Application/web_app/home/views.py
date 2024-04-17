@@ -37,10 +37,10 @@ def feature(request):
     return render(request, 'feature.html')
     #return HttpResponse("this is contact page")
 
-def automatic(request):
+# def automatic(request):
     
-    return render(request, 'automatic.html')
-    #return HttpResponse("this is contact page")
+#     return render(request, 'automatic.html')
+#     #return HttpResponse("this is contact page")
 
 
 def login(request):
