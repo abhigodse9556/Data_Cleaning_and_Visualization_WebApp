@@ -37,10 +37,10 @@ def feature(request):
     return render(request, 'feature.html')
     #return HttpResponse("this is contact page")
 
-# def automatic(request):
+def index(request):
     
-#     return render(request, 'automatic.html')
-#     #return HttpResponse("this is contact page")
+    return render(request, 'index.html')
+    #return HttpResponse("this is contact page")
 
 
 def login(request):
@@ -80,3 +80,23 @@ def register(request):
 
     #return HttpResponse("this is register page")
     
+def upload_file(request):
+    if request.method == 'POST' and request.FILES['file']:
+        file = request.FILES['file']
+        # Check file type and load data accordingly
+        if file.name.endswith('.csv'):
+            df = pd.read_csv(file)
+        elif file.name.endswith('.json'):
+            df = pd.read_json(file)
+        elif file.name.endswith('.xlsx'):
+            df = pd.read_excel(file)
+        else:
+            return HttpResponse("Unsupported file format!")
+
+        # Convert DataFrame to HTML table
+        html_table = df.to_html()
+
+        # Pass the HTML table to the template
+        return render(request, 'automatic.html', {'html_table': html_table})
+
+    return render(request, 'upload_file.html')

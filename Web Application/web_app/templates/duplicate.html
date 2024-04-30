@@ -1,4 +1,4 @@
-<!-- null.html -->
+<!-- duplicate.html -->
 
 {% extends 'base.html' %}
 
@@ -6,35 +6,69 @@
 {%block additional_css%}
 
 <link rel="stylesheet" href="{% static '/css/common.css' %}">
-
+<style>
+    .data-container{
+        display: flex;
+    }
+    .cleanedData{
+        width: 50%;
+        text-align: center;
+        margin: 5px;
+        scrollbar-width: 2px;
+    }
+    .upload-container{
+        height: 120px;
+        width: 600px;
+        cursor: pointer;
+        border-style: inset;
+        margin: 15px auto;
+    }
+    .upload_icon{
+        height: 40px;
+        width: 40px;
+    }
+</style>
 {%endblock%}
 
 {% block title %}Upload{% endblock title %}
 
 
-    
 {% block body %}
 <div class="main_section">
     <div class="main-container">
-        <h1>Remove Duplicate Values</h1>
+        <h1>Remove Duplicates</h1>
         <!-- File Upload Form -->
         <form id="uploadForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <label for="file">Choose a file:</label>
-            <input type="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()">
+            <label for="file"></label>
+            <div id="upload-container" class="upload-container" onclick="uploadFile()">
+                <input type="file" id="file" name="file" accept=".csv, .xlsx, .json" onchange="displayFilePath()" style="display: none">
+                <img class="upload_icon" src="{% static '/img/upload.svg' %}" alt="Image">
+                <p>Upload a CSV or Excel or Json file. Click here to choose file</p>
+                <div id="filePath"></div>
+            </div>
             <input type="Submit" value="Submit">
         </form>
-        <div id="filePath"></div>
+        
     </div>
-
+    <div class= "data-container">
+    {% if html_table %}
+    <div id = "cleanedData" class = "cleanedData">
+    <h2>Uploaded Data</h2>
+    <div class="result-container">
+    <!-- Display the HTML table -->
+    {{ html_table | safe }}
+    </div>
+    </div>
+    {% endif %}
     {% if cleaned_data %}
-        <div id="cleanedData">
+        <div id="cleanedData" class = "cleanedData">
             <h2>Cleaned Data</h2>
             <div class="result-container">
-                {{ cleaned_data|safe }}
+                {{ cleaned_data | safe }}
             </div>
         </div>
-        
+    </div>
         {% if modified_file_path %}
         <br><div class="download_modified_file">
             <a href="{% url 'download_modified_file' %}?modified_file_path={{ modified_file_path }}" download>
@@ -43,7 +77,22 @@
         </div>
         {% endif %}
     {% endif %} 
-    </div>
-{% endblock body %}
-    
+</div>
 
+<script>
+    function uploadFile(){
+        document.getElementById('file').click();
+    }
+
+    function displayFilePath() {
+        const fileInput = document.getElementById('file');
+        const filePath = document.getElementById('filePath');
+    
+        if (fileInput.files.length > 0) {
+            filePath.innerHTML = `${fileInput.files[0].name} uploaded....`;
+        } else {
+            filePath.innerHTML = 'Uploading failed! Try again';
+        }
+    }
+</script>
+{% endblock %}

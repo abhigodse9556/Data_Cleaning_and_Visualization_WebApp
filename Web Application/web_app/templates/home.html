@@ -4,11 +4,146 @@
 {% load static %}
 {% block additional_css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
+<style>
+  
+
+  main {
+    padding: 0px 0;
+  }
+  
+ /* General Styles */
+
+
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Home Hero Section */
+  
+  .home_hero {
+    background-image: none; 
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+    height: 500px;
+  }
+  
+  .home_hero h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .home_hero p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  
+  .home_btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #fff;
+    color: #357ae8;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .home_btn:hover {
+    background: linear-gradient(to right bottom, #fffefe, #02edfe);
+    transform: translateY(-3px);
+  }
+  
+ 
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .fadeIn {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .slider {
+    height: 500px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slide {
+    width: 100%;
+    display: none; /* Initially hide all slides */
+  }
+
+  .slide img {
+    width: 100%;
+    display: block;
+    z-index: -1;
+  }
+
+  .slide.active {
+    display: block; /* Display active slide */
+  }
+
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    z-index: 1;
+  }
+
+  .next {
+    right: 0;
+  }
+
+</style>        
 {% endblock additional_css %}
 {%block title%}Home{%endblock title%}
+<script type="text/javascript" src="{% static '/js/jquery-1.8.3.min.js' %}"></script>
+      <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 {% block body %}
 
 <main>
+
+  <div class="slider">
+    <div class="slides">
+      <div class="slide active"><img src="{% static '/img/datacleaning.png' %}" alt="Image 1"></div>
+      <div class="slide"><img src="{% static '/img/data-preprocessing.png' %}" alt="Image 2"></div>
+      <div class="slide"><img src="{% static '/img/Data-Visualization.png' %}" alt="Image 3"></div>
+    </div>
+    <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+    <a class="next" onclick="moveSlide(1)">&#10095;</a>
+  </div>
+  
+
+  
     <section class="home_hero">
       <div class="home_container">
         <h2>Clean, Prepare, Analyze</h2>
@@ -41,6 +176,33 @@
           });
       });
 
+  </script>
+
+  <script>
+    let slideIndex = 1; // Start from the first slide
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlides() {
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    if (slideIndex < 1) { slideIndex = slides.length; }
+
+    slides.forEach(slide => {
+      slide.classList.remove('active'); // Hide all slides
+    });
+
+    slides[slideIndex - 1].classList.add('active'); // Display active slide
+  }
+
+  function moveSlide(n) {
+    slideIndex += n;
+    showSlides();
+  }
+
+  // Start the slider after 2 seconds
+  setTimeout(function() {
+    setInterval(showSlides, 2000);
+  }, 2000);
   </script>
 
 {% endblock body %}

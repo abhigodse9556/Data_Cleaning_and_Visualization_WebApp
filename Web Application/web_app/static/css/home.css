@@ -1,5 +1,5 @@
 main {
-    padding: 20px 0;
+    padding: 0px 0;
   }
   
  /* General Styles */
@@ -14,7 +14,7 @@ main {
   /* Home Hero Section */
   
   .home_hero {
-    background-image: linear-gradient(to right bottom, #f3f5f8, #357ae8);
+    /* background-image: linear-gradient(to right bottom, #f3f5f8, #357ae8); */
     color: #fff;
     padding: 100px 0;
     text-align: center;

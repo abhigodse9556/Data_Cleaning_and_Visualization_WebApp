@@ -1,4 +1,5 @@
 import warnings
+from django.conf import settings
 from django.http import FileResponse, HttpResponse, HttpResponseServerError
 from django.shortcuts import get_object_or_404, render
 from home.models import File
@@ -10,6 +11,7 @@ import os
 def upload(request):
     cleaned_data = None
     modified_file_path = None
+    html_table = None 
     if request.method == 'POST':
         try:
             file = request.FILES['file']
@@ -21,8 +23,13 @@ def upload(request):
                 df = pd.read_csv(file_path)
             elif file.name.lower().endswith('.json'):
                 df = pd.read_json(file_path)
+            elif file.name.lower().endswith('.xlsx'):
+                df = pd.read_excel(file_path)
             else:
-                return HttpResponseServerError("Unsupported file format. Only CSV and JSON formats are supported.")
+                return HttpResponseServerError("Unsupported file format. Only CSV, JSON, and XLSX (Excel) formats are supported.")
+
+            # Convert DataFrame to HTML table
+            html_table = df.to_html()
 
             handle_outliers(df)
             
@@ -31,7 +38,7 @@ def upload(request):
             downloads_directory = os.path.join(os.path.expanduser("~"), "Downloads")
             
             # Construct the modified file path in the "downloads" directory
-            modified_file_path = os.path.join(downloads_directory, "modified_file.csv")
+            modified_file_path = os.path.join(settings.MEDIA_ROOT, 'modified_file.csv')
             
             # Save the modified DataFrame to the "downloads" directory
             df.to_csv(modified_file_path, index=False)
@@ -45,7 +52,7 @@ def upload(request):
         except (pd.errors.ParserError, Exception) as e:
             cleaned_data = f"Error during data cleaning: {e}"
 
-    return render(request, 'outlier.html', {'cleaned_data': cleaned_data, 'modified_file_path': modified_file_path})
+    return render(request, 'outlier.html', {'html_table': html_table, 'cleaned_data': cleaned_data, 'modified_file_path': modified_file_path})
 
 def download_modified_file(request):
     modified_file_path = request.GET.get('modified_file_path', None)
