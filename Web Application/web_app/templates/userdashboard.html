@@ -19,7 +19,8 @@
         <p>No user logged in.</p>
     {% endif %}
         <p>Unlock the power of your data with DataPrep</p>
-        <a href="upload" class="home_btn">Get Started</a>
+        <a href="{% url 'userapp:upload_user_file' %}?username={{ username }}" class="home_btn">Get Started</a>
+
       </div>
     </section>
 

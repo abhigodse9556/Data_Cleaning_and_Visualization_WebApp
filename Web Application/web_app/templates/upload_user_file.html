@@ -1,0 +1,55 @@
+<!-- upload_user_file.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+{% endblock additional_css %}
+{% block title %}Upload{% endblock title %}
+
+
+    
+{% block body %}
+
+<div class="upload_container">
+    <div class="upload_header">
+      <h1>Data Preprocessing WebApp</h1>
+      <p>Streamline Your Data Cleaning Process</p>
+    </div>
+    <section class="features">
+      <a href="{% url 'userapp:null_for_user' %}?username={{ username }}" class="feature"><div>
+        <h2>Remove Null Values</h2>
+        <p>Effortlessly eliminate null or missing values from your dataset.</p>
+      </div></a>
+      <a href="{% url 'userapp:outlier_for_user' %}?username={{ username }}" class="feature"><div>
+        <h2>Remove Outliers</h2>
+        <p>Identify and remove outliers to ensure the integrity of your data.</p>
+      </div></a>
+      <a href="{% url 'userapp:duplicate_for_user' %}?username={{ username }}" class="feature"><div>
+        <h2>Remove Duplicates</h2>
+        <p>Easily detect and remove duplicate entries from your dataset.</p>
+      </div></a>
+      <a href="{% url 'userapp:automatic_for_user' %}?username={{ username }}" class="feature"><div>
+        <h2>One-Click Cleaning</h2>
+        <p>Perform all cleaning activities in one go for maximum efficiency.</p>
+      </div></a>
+    </section>
+    <section class="visualization">
+      <h2>Data Visualization</h2>
+      <p>Visualize your cleaned data for better insights and decision-making.</p>
+    </section>
+    <footer>
+      <p>&copy; 2024 DataPrep WebApp. All rights reserved.</p>
+    </footer>
+  </div>
+
+<script>
+    window.addEventListener('load', function() {
+        document.getElementById('sign').style.display = 'none';
+        document.getElementById('signed_user').style.display = 'grid';
+    });
+</script>
+
+{% endblock body %}
+    
+

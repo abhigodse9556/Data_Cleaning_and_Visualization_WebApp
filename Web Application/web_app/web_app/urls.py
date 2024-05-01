@@ -23,5 +23,6 @@ admin.site.index_title = "Welcome to Web Application Administration"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('home.urls'))
+    path('',include('home.urls')),
+    path('user/', include(('userapp.urls', 'userapp'), namespace='userapp')),
 ]

@@ -19,6 +19,5 @@ urlpatterns = [
     path('download/', outlier.download_modified_file, name='download_modified_file'),
     path('duplicate/', duplicate.upload, name='duplicate'),
     path('download/', duplicate.download_modified_file, name='download_modified_file'),
-    path('upload_file', views.upload_file, name='upload_file'),
 ]
 
