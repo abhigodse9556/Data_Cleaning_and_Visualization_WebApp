@@ -11,6 +11,28 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import OneHotEncoder
 from autoviz.AutoViz_Class import AutoViz_Class
 
+from django.shortcuts import render
+from autoviz.AutoViz_Class import AutoViz_Class
+
+def data_analysis(request):
+    # Call your data cleaning function
+    updated_dataset = find_and_fill_null_values(r"D:\Data Processing App\test files\height-weight.csv")
+    
+    # Generate statistical data visualization
+    visualize_statistical_data(updated_dataset)
+    
+    # Call AutoViz for automatic visualization
+    AV = AutoViz_Class()
+    dfte = AV.AutoViz('path_to_your_dataset.csv', sep=",")
+    
+    # Pass the cleaned dataset and visualization data to the template
+    context = {
+        'dataset': updated_dataset.to_html(),
+        'visualization': dfte
+    }
+    
+    # Render the template with the context
+    return render(request, 'analysis.html', context)
 
 def visualize_statistical_data(df):
     """
@@ -299,7 +321,7 @@ def find_and_fill_null_values(dataset):
 
 
 # Example usage
-updated_dataset = find_and_fill_null_values(r"C:\Users\abhig\Downloads\modified_file.csv")
+updated_dataset = find_and_fill_null_values(r"D:\Data Processing App\test files\height-weight.csv")
 
 
 

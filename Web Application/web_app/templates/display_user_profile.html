@@ -1,0 +1,128 @@
+<!-- display_user_profile.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block additional_css %}
+<style>
+main {
+    padding: 0px 0;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .profile_hero {
+    background-image: linear-gradient(to right bottom, #f3f5f8, #357ae8);
+    color: #fff;
+    padding: 75px 0;
+    text-align: center;
+    height: 500px;
+    margin: auto;
+    width: 500px;
+  }
+  
+  .profile_hero h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .profile_hero p {
+    font-size: 1.2em;
+  }
+
+  .profile_container{
+    text-align: left;
+  }
+  
+  .profile_btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #fff;
+    color: #357ae8;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-color: whitesmoke;
+  }
+  
+  .profile_btn:hover {
+    background: linear-gradient(to right bottom, #fffefe, #02edfe);
+    transform: translateY(-3px);
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
+</style>
+{% endblock additional_css %}
+{%block title%}User Profile{%endblock title%}
+{% block body %}
+
+<main>
+    {% if updateStatus %}
+    <p id="notify" style="color: red;">{{updateStatus}}<a href="#" onclick="closeNotify()">close</a></p>
+    {% endif %}
+    
+    <section class="profile_hero">
+        <h2>User Profile</h2>
+    {% if username %}
+        <p>Hello, {{ username }}</p>
+    {% else %}
+        <p>No user logged in.</p>
+    {% endif %}
+    <div id="viewProfile">
+        <p>Name: {{ user_profile.firstname }} {{ user_profile.lastname }}</p>
+        <p>Email: {{ user_profile.email }}</p>
+        <p>Mobile Number: {{ user_profile.mobileNo }}</p>
+        <a href="#" class="profile_btn" onclick="openEditProfile()">Edit Profile</a>
+    </div>
+    <div id="editProfile" style="display: none;">
+        <form action="{% url 'userapp:updateUserProfile' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{ username }}">
+            <p>First Name: <input type="text" name="firstname" value="{{ user_profile.firstname }}"/></p>
+            <p>Last Name: <input type="text" name="lastname" value="{{ user_profile.lastname }}"/></p>
+            <p>Email: <input type="text" name="email" value="{{ user_profile.email }}"/></p>
+            <p>Mobile Number: <input type="text" name="mobileNo" value="{{ user_profile.mobileNo }}"/></p>
+            <button class="profile_btn" type="submit">Save Changes</button>
+            <a href="#" class="profile_btn" onclick="closeEditProfile()">Cancel</a>
+        </form>
+    </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="home_container">
+      <p>&copy; 2024 DataPrep. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function() {
+      document.getElementById('sign').style.display = 'none';
+      document.getElementById('signed_user').style.display = 'grid';
+    });
+
+    function openEditProfile(){
+        document.getElementById('viewProfile').style.display = "none";
+        document.getElementById('editProfile').style.display = "block";
+    }
+
+    function closeEditProfile(){
+        document.getElementById('viewProfile').style.display = "block";
+        document.getElementById('editProfile').style.display = "none";
+    }
+
+    function closeNotify(){
+        document.getElementById('notify').style.display = "none";
+    }
+
+  </script>
+
+{% endblock body %}

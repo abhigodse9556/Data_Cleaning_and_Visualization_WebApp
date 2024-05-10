@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View File</title>
+</head>
+<body>
+    <h1>View File</h1>
+    
+    {% for file_record in files %}
+    <h3>Uploaded File: {{ file_record.uploaded_file_name }}</h3>
+    <pre>{{ file_record.uploaded_file }}</pre>
+
+    <h3>Modified File: {{ file_record.modified_file_name }}</h3>
+    <pre>{{ file_record.modified_file }}</pre>
+{% endfor %}
+
+</body>
+</html>

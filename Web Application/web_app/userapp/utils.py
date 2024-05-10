@@ -17,6 +17,7 @@ def uploaduserfile(request):
             file = request.FILES['file']
             loggeduser = request.POST.get('username')
             file_obj = userFiles.objects.create(
+                uploaded_file_name=file, 
                 uploaded_file=file, 
                 username=loggeduser
                 )
@@ -50,6 +51,7 @@ def uploaduserfile(request):
             cleaned_data = df.to_html()
             
             # Save the modified file to the model
+            file_obj.modified_file_name = modified_file_path
             file_obj.modified_file = modified_file_path
             file_obj.save()
             

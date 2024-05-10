@@ -51,6 +51,9 @@
               padding: 5px;
             }
           }
+          .loggedUser{
+            color: red;
+          }
         </style>
 
         {% block additional_css %}{% endblock additional_css %}
@@ -81,21 +84,21 @@
           <a href="/register">Sign Up for Free</a>
           <a href="/login">Login</a>
         </div>
+        
         <div id="signed_user" class="signed_user">
-          <h2 id="loggedUser" class="loggedUser">
+          <a href="{% url 'userapp:displayUserProfile' %}?username={{ username }}">
+          <h2 id="loggedUser" class="loggedUser"> 
             {% if username %}
                 {{ username }}
             {% else %}
                 Username
             {% endif %}
         </h2>
+      </a>
           <a href="/">Log Out</a>
         </div>
         </div>
       </header>
 {% block body %}
-
 {% endblock body %}
-    
-
 </div> 

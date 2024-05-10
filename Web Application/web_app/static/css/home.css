@@ -1,17 +1,10 @@
 main {
     padding: 0px 0;
   }
-  
- /* General Styles */
-
-
-  
   .container {
     max-width: 1200px;
     margin: 0 auto;
   }
-  
-  /* Home Hero Section */
   
   .home_hero {
     /* background-image: linear-gradient(to right bottom, #f3f5f8, #357ae8); */
@@ -48,8 +41,6 @@ main {
     background: linear-gradient(to right bottom, #fffefe, #02edfe);
     transform: translateY(-3px);
   }
-  
- 
   
   footer {
     background-color: #333;
