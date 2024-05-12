@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, utils, duplicate, null, outlier
+from . import views, utils, duplicate, null, outlier, visualize
 
 urlpatterns = [
     path('upload_user_file', views.upload_user_file, name='upload_user_file'),
@@ -7,6 +7,7 @@ urlpatterns = [
     path('duplicate_for_user', views.duplicate_for_user, name='duplicate_for_user'),
     path('null_for_user', views.null_for_user, name='null_for_user'),
     path('outlier_for_user', views.outlier_for_user, name='outlier_for_user'),
+    path('visualization', views.visualization, name='visualization'),
     path('displayUserProfile', views.displayUserProfile, name='displayUserProfile'),
     path('updateUserProfile', views.updateUserProfile, name='updateUserProfile'),
     path('displayPreviousWork', views.displayPreviousWork, name='displayPreviousWork'),
@@ -19,4 +20,6 @@ urlpatterns = [
     path('download_modified_userfile', null.download_modified_userfile, name='download_modified_userfile'),
     path('removeoutlierforuser', outlier.removeoutlierforuser, name='removeoutlierforuser'),
     path('download_modified_userfile', outlier.download_modified_userfile, name='download_modified_userfile'),
+    path('visualizeData', visualize.visualizeData, name='visualizeData'),
+    path('download_modified_userfile', visualize.download_modified_userfile, name='download_modified_userfile'),
 ]

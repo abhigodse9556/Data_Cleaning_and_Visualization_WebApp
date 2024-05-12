@@ -26,6 +26,10 @@ def outlier_for_user(request):
     username = request.GET.get('username')
     return render(request, 'outlier_for_user.html', {'username': username})
 
+def visualization(request):
+    username = request.GET.get('username')
+    return render(request, 'visualize.html', {'username': username})
+
 def displayUserProfile(request):
     username = request.GET.get('username')
     user_profile = UsersRegistry.objects.get(registerUsername=username)
