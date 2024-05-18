@@ -21,5 +21,4 @@ urlpatterns = [
     path('removeoutlierforuser', outlier.removeoutlierforuser, name='removeoutlierforuser'),
     path('download_modified_userfile', outlier.download_modified_userfile, name='download_modified_userfile'),
     path('visualizeData', visualize.visualizeData, name='visualizeData'),
-    path('download_modified_userfile', visualize.download_modified_userfile, name='download_modified_userfile'),
 ]

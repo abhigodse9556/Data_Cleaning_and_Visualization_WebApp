@@ -4,6 +4,10 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from home.models import UsersRegistry
 from userapp.models import userFiles
+from .forms import UploadFileForm
+from autoviz.AutoViz_Class import AutoViz_Class
+import pandas as pd
+import shutil
 
 # Create your views here.
 def upload_user_file(request):

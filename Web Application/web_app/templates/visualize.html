@@ -35,8 +35,11 @@
 
 {% block body %}
 <div class="main_section">
-    <div class="main-container">
+    
         <h1>Data Visualization</h1>
+
+        <div class="main-container">
+
         <!-- File Upload Form -->
         <form id="uploadForm" action="{% url 'userapp:visualizeData' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -53,15 +56,15 @@
         
     </div>
     <div>
-        {% if error %}
-        <p>{{ error }}</p>
-    {% else %}
-        {% if plots %}
-            {% for plot in plots %}
-                {{ plot | safe }}
-            {% endfor %}
-        {% endif %}
-    {% endif %}
+
+    <h1>AutoViz Charts</h1>
+    
+    <!-- Iterate over the list of SVG files and display each file -->
+    {% for svg_file in plot_files %}
+        <h2>{{ svg_file }}</h2><br>
+        <img src="{% static 'AutoViz_Plots/' %}{{ svg_file }}" alt="{{ svg_file }}" style="width: 1400px; margin-left: 50px;">
+    {% endfor %}
+
     </div>
 <script>
     function uploadFile(){

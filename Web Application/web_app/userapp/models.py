@@ -11,3 +11,9 @@ class userFiles(models.Model):
     
     def __str__(self):
         return f"file_id: {self.id}"
+
+class UploadedFile(models.Model):
+    file = models.FileField(upload_to='uploads/')
+    
+    class Meta:
+        app_label = 'userapp'
