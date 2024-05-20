@@ -4,6 +4,32 @@
 {% load static %}
 {% block additional_css %}
 <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+<style>
+  
+  .popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to right bottom, #321974, #ff0095c9);
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+</style>
 {% endblock additional_css %}
 {% block title %}Upload{% endblock title %}
 
@@ -14,7 +40,7 @@
 <div class="upload_container">
     <div class="upload_header">
       <h1>Data Preprocessing WebApp</h1>
-      <p>Streamline Your Data Cleaning Process</p>
+      <p style="color: white;">Streamline Your Data Cleaning Process</p>
     </div>
     <section class="features">
       <a href="/null" class="feature"><div>
@@ -34,16 +60,28 @@
         <p>Perform all cleaning activities in one go for maximum efficiency.</p>
       </div></a>
     </section>
-    <section class="visualization">
+    <a id="popupLink" href=""  style="color: white;"><section class="visualization">
       <h2>Data Visualization</h2>
       <p>Visualize your cleaned data for better insights and decision-making.</p>
-    </section>
-    <footer>
-      <p>&copy; 2024 DataPrep WebApp. All rights reserved.</p>
-    </footer>
+    </section></a>
+    <div id="popup" class="popup">
+      <p style="color: white;">To use the Visualization feature you need to login first!</p>
+      <a href="/login" style="color: white;"> Login </a>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    
   </div>
+  <footer>
+    <p>&copy; 2024 DataPrep WebApp. All rights reserved.</p>
+  </footer>
 
-
+<script>
+  document.getElementById('popupLink').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('popup').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+});
+</script>
 
 
 {% comment %} <a href="/automatic">click hear to clean and preprocess the data automatically </a><br>

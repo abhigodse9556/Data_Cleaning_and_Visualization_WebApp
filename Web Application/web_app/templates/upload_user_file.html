@@ -14,7 +14,7 @@
 <div class="upload_container">
     <div class="upload_header">
       <h1>Data Preprocessing WebApp</h1>
-      <p>Streamline Your Data Cleaning Process</p>
+      <p style="color: white;">Streamline Your Data Cleaning Process</p>
     </div>
     <section class="features">
       <a href="{% url 'userapp:null_for_user' %}?username={{ username }}" class="feature"><div>
@@ -35,15 +35,15 @@
       </div></a>
     </section>
     <section class="visualization">
-      <a href="{% url 'userapp:visualization' %}?username={{ username }}">
+      <a href="{% url 'userapp:visualization' %}?username={{ username }}"  style="color: white;">
       <h2>Data Visualization</h2>
-      </a>
       <p>Visualize your cleaned data for better insights and decision-making.</p>
-    </section>
-    <footer>
-      <p>&copy; 2024 DataPrep WebApp. All rights reserved.</p>
-    </footer>
+      </a>
   </div>
+</section>
+<footer>
+  <p>&copy; 2024 DataPrep WebApp. All rights reserved.</p>
+</footer>
 
 <script>
     window.addEventListener('load', function() {

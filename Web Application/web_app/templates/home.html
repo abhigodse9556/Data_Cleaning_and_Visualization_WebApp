@@ -3,12 +3,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block additional_css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% comment %} <link rel="stylesheet" href="{% static 'css/home.css' %}"> {% endcomment %}
 <style>
   
-
   main {
     padding: 0px 0;
+    background: linear-gradient(to right bottom, #c20098, #0011b0);
   }
   
  /* General Styles */
@@ -22,12 +22,10 @@
   
   /* Home Hero Section */
   
-  .home_hero {
-    background-image: none; 
+  .home_hero { 
     color: #fff;
-    padding: 100px 0;
     text-align: center;
-    height: 500px;
+    height: 220px;
   }
   
   .home_hero h2 {
@@ -141,16 +139,12 @@
     <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
     <a class="next" onclick="moveSlide(1)">&#10095;</a>
   </div>
-  
 
-  
-    <section class="home_hero">
-      <div class="home_container">
+      <div class="home_hero">
         <h2>Clean, Prepare, Analyze</h2>
         <p>Unlock the power of your data with DataPrep</p>
         <a href="upload" class="home_btn">Get Started</a>
       </div>
-    </section>
 
     
   </main>

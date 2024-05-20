@@ -18,6 +18,7 @@ def removeoutlierforuser(request):
             loggeduser = request.POST.get('username')
             file_obj = userFiles.objects.create(
                 uploaded_file=file, 
+                uploaded_file_name=file, 
                 username=loggeduser
             )
             file_path = file_obj.uploaded_file.path
@@ -50,6 +51,7 @@ def removeoutlierforuser(request):
             cleaned_data = df.to_html()
             
             # Save the modified file to the model
+            file_obj.modified_file_name = modified_file_path
             file_obj.modified_file = modified_file_path
             file_obj.save()
             

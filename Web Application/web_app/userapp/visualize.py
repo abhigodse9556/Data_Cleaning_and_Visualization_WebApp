@@ -59,17 +59,6 @@ def visualizeData(request):
     else:
         return render(request, 'visualize.html', {'username': loggeduser})
 
-def visualize_statistical_data(df):
-    if isinstance(df, str):
-        df = pd.read_csv(df)  # Read DataFrame from file path if input is a string
-
-    if not isinstance(df, pd.DataFrame):
-        raise ValueError("Input is not a DataFrame or valid file path.")
-
-    numerical_columns = df.select_dtypes(include=['int', 'float']).columns
-    print("Statistical Information:")
-    display(df[numerical_columns].describe())
-
 def convert_data_types(df, date_formats=date_formats_list):
     df_converted = df.copy()
     data_type_mapping = {}

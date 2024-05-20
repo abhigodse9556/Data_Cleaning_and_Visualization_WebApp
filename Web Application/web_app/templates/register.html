@@ -10,11 +10,10 @@
 <style>
     .reg-form {
         width: 400px; /* Adjust for desired width */
-        margin-top: 100px auto;
-        margin: 30px auto; /* Center the form and add spacing */
+        margin: auto; /* Center the form and add spacing */
         padding: 30px;
         border-radius: 15px; /* Soften edges */
-        background-color: #fff; /* Clean white background */
+        background: linear-gradient(to right bottom, #ff00c8, #0013c4); /* Clean white background */
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* More prominent shadow */
     }
 
@@ -84,36 +83,11 @@
         }
     }
 
-    .alert {
-        padding: 15px;
-        margin-bottom: 20px;
-        border: 1px solid #eee;
-    }
-    
-    .alert-dismissible {
-        padding-right: 30px;
-    }
-    
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        color: #000;
-        font-size: 18px;
-        font-weight: bold;
-        line-height: 1;
-        text-shadow: 0 1px 0 #fff;
-        opacity: 0.2;
-    }
-    
-    .close:hover {
-        color: #000;
-        text-decoration: none;
-        opacity: 0.5;
-        cursor: pointer;
-    }
-    .alert-close{
-        margin-left: 90%;
+    .main{
+        background: linear-gradient(to right bottom, #c20098, #0011b0);
+        height: 770px;
+        width: 100%;
+        padding-top: 30px;
     }
 </style>
 
@@ -123,17 +97,7 @@
 <!-- Main Container -->
 
 <!-- Register Popup -->
-<div class="">
-
-    {% if messages %}
-    {% for message in messages %}
-    <div id="alert"class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
-        <strong>{{ message }}</strong> <a href="#" onclick="closeSignInPopup()">Close</a>
-        <span class="aler-close" onclick="closeSignInPopup()">&times;</span>
-    </div>
-    {% endfor %}
-
-{% endif %}
+<div class="main">
 
     <form class="reg-form" onsubmit="return validateRegisterForm()" method="post" action="/register">
         {% csrf_token %}
@@ -160,7 +124,7 @@
 
         <div class="submitbuttons">
             <input type="submit" value="Submit">
-            <a href="/">Cancel Registration</a>
+            <a href="/" style="color: white;">Cancel Registration</a>
         </div>
     
     </form>
