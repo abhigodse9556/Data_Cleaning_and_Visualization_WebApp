@@ -95,7 +95,10 @@ tbody tr:hover {
 .btn:hover {
     background-color: #0056b3;
 }
-
+    
+table{
+  color: white;
+}
 
 </style>
 {% endblock additional_css %}
@@ -114,7 +117,7 @@ tbody tr:hover {
     {% else %}
         <p>No user logged in.</p>
     {% endif %}
-    <div id="viewProfile">
+    <div id="viewProfile" style="overflow-y: scroll; height: 700px;">
         <table>
             <thead>
                 <tr style="color: black;">

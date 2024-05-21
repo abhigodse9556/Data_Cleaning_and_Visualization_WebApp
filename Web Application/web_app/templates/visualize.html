@@ -27,6 +27,10 @@
         height: 40px;
         width: 40px;
     }
+    
+    table{
+        color: white;
+    }
 </style>
 {%endblock%}
 
@@ -36,7 +40,7 @@
 {% block body %}
 <div class="main_section">
     
-        <h1>Data Visualization</h1>
+        <h1 style="color: white;">Data Visualization</h1>
 
         <div class="main-container">
 
@@ -57,7 +61,7 @@
     </div>
     <div>
 
-    <h1>AutoViz Charts</h1>
+    <h1 style="color: white;">AutoViz Charts</h1>
     
     <!-- Iterate over the list of SVG files and display each file -->
     {% for svg_file in plot_files %}

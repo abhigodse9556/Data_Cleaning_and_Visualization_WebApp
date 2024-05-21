@@ -27,6 +27,10 @@
         height: 40px;
         width: 40px;
     }
+
+    table{
+        style="color: white;"
+    }
 </style>
 {%endblock%}
 
@@ -36,7 +40,7 @@
 {% block body %}
 <div class="main_section">
     <div class="main-container">
-        <h1>One-Click Cleaning</h1>
+        <h1 style="color: white;">One-Click Cleaning</h1>
         <!-- File Upload Form -->
         <form id="uploadForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -54,7 +58,7 @@
     <div class= "data-container">
     {% if html_table %}
     <div id = "cleanedData" class = "cleanedData">
-    <h2>Uploaded Data</h2>
+    <h2 style="color: white;">Uploaded Data</h2>
     <div class="result-container">
     <!-- Display the HTML table -->
     {{ html_table | safe }}
@@ -63,7 +67,7 @@
     {% endif %}
     {% if cleaned_data %}
         <div id="cleanedData" class = "cleanedData">
-            <h2>Cleaned Data</h2>
+            <h2 style="color: white;">Cleaned Data</h2>
             <div class="result-container">
                 {{ cleaned_data | safe }}
             </div>
