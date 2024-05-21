@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{%load static%}
 {%block additional_css%}
 <style>
 
@@ -21,9 +22,7 @@ html {
 
  /* Home Features Section */
   
- .home_features {
-    padding: 80px 0;
-  }
+ 
   
   .home_features h2 {
     font-size: 2.5em;
@@ -36,7 +35,14 @@ html {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-bottom: 50px;
+    margin: 0px auto;
+    width: 900px;
+
+    p{
+      margin-top: 35px;
+      margin-left: 45px;
+      text-align: justify;
+    }
   }
   
   .icon {
@@ -57,7 +63,7 @@ html {
   }
   
   .home_feature p {
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #555;
     line-height: 1.6;
   }
@@ -79,25 +85,16 @@ html {
         <div class="home_container">
           <h2>Key Features</h2>
           <div class="home_feature">
-            <div class="icon">
-              <img src="data-import.png" alt="Data Import">
-            </div>
             <h3>Data Import</h3>
-            <p>Effortlessly import your datasets with a few clicks</p>
+            <br><br><p>Effortlessly import your datasets with a few clicks: At DataPrep, we understand that getting your data into the right format is the first step toward effective analysis and visualization. Our data import feature is designed to make this process as smooth and straightforward as possible.</p>
           </div>
           <div class="home_feature">
-            <div class="icon">
-              <img src="data-cleaning.png" alt="Data Cleaning">
-            </div>
             <h3>Data Cleaning</h3>
-            <p>Automatically clean and standardize your data</p>
+            <p>Automatically clean and standardize your data: In the world of data, accuracy and consistency are paramount. At DataPrep, we understand the challenges that come with maintaining high-quality data. That's why our platform offers a robust data cleaning feature designed to automatically clean and standardize your data, saving you time and ensuring your data is always ready for analysis.</p>
           </div>
           <div class="home_feature">
-            <div class="icon">
-              <img src="data-visualization.png" alt="Data Visualization">
-            </div>
             <h3>Data Visualization</h3>
-            <p>Create insightful visualizations to understand your data better</p>
+            <p>Create insightful visualizations to understand your data better: At DataPrep, we believe that visualizing data is a crucial step in the data analysis process. Our data visualization feature is designed to help you transform complex datasets into clear, comprehensible visual formats, enabling you to uncover hidden insights and make data-driven decisions with confidence.</p>
           </div>
         </div>
       </section>
